@@ -12,9 +12,11 @@ export default function Home() {
       <div className="grid place-items-center">
         <div>
           <img
-            src="https://img.freepik.com/free-psd/close-up-delicious-apple_23-2151868338.jpg?semt=ais_incoming&w=740&q=80"
+            src="apple.jpeg"
             alt="Apple"
             className="max-w-full h-auto rounded-3xl"
+            width={400}
+            height={400}
           />
         </div>
       </div>
