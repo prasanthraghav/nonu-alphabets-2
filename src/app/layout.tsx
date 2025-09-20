@@ -15,7 +15,13 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: 'Nonu Alphabets',
-  description: 'Nonu Alphabets is a simple app to learn the alphabets.'
+  description: 'Nonu Alphabets is a simple app to learn the alphabets.',
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon-16x16.png',
+    apple: '/apple-touch-icon.png'
+  },
+  manifest: '/manifest.json'
 };
 
 export default function RootLayout({
