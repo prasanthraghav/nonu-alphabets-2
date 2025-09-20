@@ -28,8 +28,8 @@ const alphabets = {
     image: 'goat.jpeg'
   },
   H: {
-    word: 'Hat',
-    image: 'hat.jpeg'
+    word: 'Hen',
+    image: 'hen.jpeg'
   },
   I: {
     word: 'Ice Cream',
@@ -72,8 +72,8 @@ const alphabets = {
     image: 'rabbit.jpeg'
   },
   S: {
-    word: 'Sun',
-    image: 'sun.jpeg'
+    word: 'Ship',
+    image: 'ship.jpeg'
   },
   T: {
     word: 'Tiger',
