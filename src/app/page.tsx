@@ -80,7 +80,7 @@ export default function Home() {
       <div className="grid place-items-center">
         <div className="text-center">
           <div className="text-9xl">{currentAlphabet}</div>
-          <div className="text-7xl mt-10">{word}</div>
+          <div className="text-5xl mt-10">{word}</div>
         </div>
       </div>
       <div className="grid place-items-center">
