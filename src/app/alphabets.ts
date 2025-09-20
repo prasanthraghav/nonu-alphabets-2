@@ -60,8 +60,8 @@ const alphabets = {
     image: 'orange.jpeg'
   },
   P: {
-    word: 'Pencil',
-    image: 'pencil.jpeg'
+    word: 'Peacock',
+    image: 'peacock.jpeg'
   },
   Q: {
     word: 'Quail',
