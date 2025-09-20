@@ -24,8 +24,8 @@ const alphabets = {
     image: 'fish.jpeg'
   },
   G: {
-    word: 'Grapes',
-    image: 'grapes.jpeg'
+    word: 'Goat',
+    image: 'goat.jpeg'
   },
   H: {
     word: 'Hat',
