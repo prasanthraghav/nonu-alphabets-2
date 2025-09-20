@@ -1,10 +1,10 @@
 {
-  "name": "Nonu Alpha",
-  "short_name": "Nonu",
+  "name": "Nonu Alphabets",
+  "short_name": "Nonu Alphabets",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#171717",
-  "theme_color": "#ffffff",
+  "theme_color": "#171717",
   "icons": [
     {
       "src": "/icon-192.png",
