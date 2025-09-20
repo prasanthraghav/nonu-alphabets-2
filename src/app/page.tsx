@@ -6,140 +6,71 @@ import React from 'react';
 
 type AlphabetKey = keyof typeof alphabets;
 
+const saveCurrentAlphabet = (alphabet: AlphabetKey) => {
+  localStorage.setItem('currentAlphabet', alphabet);
+};
+
+const loadCurrentAlphabet = (): AlphabetKey => {
+  const savedAlphabet = localStorage.getItem('currentAlphabet');
+  if (savedAlphabet && savedAlphabet in alphabets) {
+    return savedAlphabet as AlphabetKey;
+  }
+  return 'A';
+};
+
+const getNextAlphabetKey = (current: AlphabetKey): AlphabetKey => {
+  const ascii = current.charCodeAt(0);
+  return String.fromCharCode(((ascii - 65 + 1) % 26) + 65) as AlphabetKey;
+};
+
+const evaluateKeyPress = (key: string): boolean => {
+  const asciiValue = key.charCodeAt(0);
+  return (
+    (asciiValue >= 65 && asciiValue <= 90) ||
+    (asciiValue >= 97 && asciiValue <= 122)
+  );
+};
+
 export default function Home() {
   const [currentAlphabet, setCurrentAlphabet] = useState<AlphabetKey>('A');
   const { word, image } = alphabets[currentAlphabet];
   const imgUrl = `/images/alphabets/${image}`;
 
+  // Function to get the next alphabet and update the state
   const getNextAlphabet = () => {
-    const ascii = currentAlphabet.charCodeAt(0);
-    const nextAlphabet = String.fromCharCode(
-      ((ascii - 65 + 1) % 26) + 65
-    ) as AlphabetKey;
+    const nextAlphabet = getNextAlphabetKey(currentAlphabet);
     setCurrentAlphabet(nextAlphabet);
   };
 
+  // Handle click event to go to the next alphabet
   const handleclick = () => {
     getNextAlphabet();
   };
 
-  const saveCurrentAlphabet = (alphabet: AlphabetKey) => {
-    localStorage.setItem('currentAlphabet', alphabet);
-  };
-
-  const loadCurrentAlphabet = (): AlphabetKey => {
-    const savedAlphabet = localStorage.getItem('currentAlphabet');
-    if (savedAlphabet && savedAlphabet in alphabets) {
-      return savedAlphabet as AlphabetKey;
+  // Handle key press event to set the current alphabet or go to the next one
+  const handleKeyPress = (event: KeyboardEvent) => {
+    if (evaluateKeyPress(event.key)) {
+      setCurrentAlphabet(event.key.toUpperCase() as AlphabetKey);
+    } else {
+      getNextAlphabet();
     }
-    return 'A';
   };
 
+  // Attach keydown event listener
+  if (typeof window !== 'undefined') {
+    window.onkeydown = handleKeyPress;
+  }
+
+  // Load saved alphabet on mount and save current alphabet on change
   React.useEffect(() => {
     const savedAlphabet = loadCurrentAlphabet();
     setCurrentAlphabet(savedAlphabet);
   }, []);
+
+  // Save current alphabet to localStorage whenever it changes
   React.useEffect(() => {
     saveCurrentAlphabet(currentAlphabet);
   }, [currentAlphabet]);
-
-  const handleKeyPress = (event: KeyboardEvent) => {
-    switch (event.key) {
-      case 'Enter':
-      case 'ArrowRight':
-      case ' ':
-      case 'Escape':
-      case 'Backspace':
-      case 'Tab':
-      case 'Shift':
-      case 'Control':
-      case 'Alt':
-      case 'Meta':
-      case 'CapsLock':
-      case 'F1':
-      case 'F2':
-      case 'F3':
-      case 'F4':
-      case 'F5':
-      case 'F6':
-      case 'F7':
-      case 'F8':
-      case 'F9':
-      case 'F10':
-      case 'F11':
-      case 'F12':
-      case 'ArrowLeft':
-      case 'ArrowUp':
-      case 'ArrowDown':
-        event.preventDefault();
-        getNextAlphabet();
-        break;
-
-      case 'a':
-      case 'b':
-      case 'c':
-      case 'd':
-      case 'e':
-      case 'f':
-      case 'g':
-      case 'h':
-      case 'i':
-      case 'j':
-      case 'k':
-      case 'l':
-      case 'm':
-      case 'n':
-      case 'o':
-      case 'p':
-      case 'q':
-      case 'r':
-      case 's':
-      case 't':
-      case 'u':
-      case 'v':
-      case 'w':
-      case 'x':
-      case 'y':
-      case 'z':
-        setCurrentAlphabet(event.key.toUpperCase() as AlphabetKey);
-        break;
-      case 'A':
-      case 'B':
-      case 'C':
-      case 'D':
-      case 'E':
-      case 'F':
-      case 'G':
-      case 'H':
-      case 'I':
-      case 'J':
-      case 'K':
-      case 'L':
-      case 'M':
-      case 'N':
-      case 'O':
-      case 'P':
-      case 'Q':
-      case 'R':
-      case 'S':
-      case 'T':
-      case 'U':
-      case 'V':
-      case 'W':
-      case 'X':
-      case 'Y':
-      case 'Z':
-        setCurrentAlphabet(event.key as AlphabetKey);
-        break;
-
-      default:
-        break;
-    }
-  };
-
-  if (typeof window !== 'undefined') {
-    window.onkeydown = handleKeyPress;
-  }
 
   return (
     <main
