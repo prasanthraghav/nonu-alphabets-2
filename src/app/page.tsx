@@ -2,12 +2,12 @@
 
 import { useState } from 'react';
 import alphabets from './alphabets';
-import { get } from 'http';
+import React from 'react';
 
 type AlphabetKey = keyof typeof alphabets;
 
 export default function Home() {
-  const [currentAlphabet, setCurrentAlphabet] = useState<AlphabetKey>('D');
+  const [currentAlphabet, setCurrentAlphabet] = useState<AlphabetKey>('A');
   const { word, image } = alphabets[currentAlphabet];
   const imgUrl = `/images/alphabets/${image}`;
 
@@ -22,6 +22,26 @@ export default function Home() {
   const handleclick = () => {
     getNextAlphabet();
   };
+
+  const saveCurrentAlphabet = (alphabet: AlphabetKey) => {
+    localStorage.setItem('currentAlphabet', alphabet);
+  };
+
+  const loadCurrentAlphabet = (): AlphabetKey => {
+    const savedAlphabet = localStorage.getItem('currentAlphabet');
+    if (savedAlphabet && savedAlphabet in alphabets) {
+      return savedAlphabet as AlphabetKey;
+    }
+    return 'A';
+  };
+
+  React.useEffect(() => {
+    const savedAlphabet = loadCurrentAlphabet();
+    setCurrentAlphabet(savedAlphabet);
+  }, []);
+  React.useEffect(() => {
+    saveCurrentAlphabet(currentAlphabet);
+  }, [currentAlphabet]);
 
   const handleKeyPress = (event: KeyboardEvent) => {
     switch (event.key) {
