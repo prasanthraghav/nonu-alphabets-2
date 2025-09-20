@@ -74,13 +74,13 @@ export default function Home() {
 
   return (
     <main
-      className="grid grid-cols-[2fr_3fr] h-full p-20"
+      className="grid  h-full p-10 portrait:grid-rows-[2fr_3fr] landscape:grid-cols-[2fr_3fr]"
       onClick={handleclick}
     >
       <div className="grid place-items-center">
         <div className="text-center">
           <div className="text-9xl">{currentAlphabet}</div>
-          <div className="text-7xl mt-20">{word}</div>
+          <div className="text-7xl mt-10">{word}</div>
         </div>
       </div>
       <div className="grid place-items-center">
@@ -88,7 +88,7 @@ export default function Home() {
           <img
             src={imgUrl}
             alt={word}
-            className="max-w-full h-auto rounded-3xl w-48 md:w-64 lg:w-128 h-auto"
+            className="max-w-full h-auto rounded-3xl w-64 md:w-128 lg:w-256 h-auto"
           />
         </div>
       </div>
