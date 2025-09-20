@@ -88,7 +88,7 @@ export default function Home() {
           <img
             src={imgUrl}
             alt={word}
-            className="max-w-full h-auto rounded-3xl w-64 portrait:w-32 landscape:w-64 md:w-128 lg:w-256 h-auto"
+            className="max-w-full h-auto rounded-3xl w-64 portrait:w-64 landscape:w-64 md:w-128 lg:w-256 h-auto"
           />
         </div>
       </div>
