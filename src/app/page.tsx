@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import alphabets from './alphabets';
 import React from 'react';
+import AlphabetExplorer from './alphabetExplorer/alphabetExplorer';
 
 type AlphabetKey = keyof typeof alphabets;
 
@@ -72,26 +73,28 @@ export default function Home() {
     saveCurrentAlphabet(currentAlphabet);
   }, [currentAlphabet]);
 
-  return (
-    <main
-      className="grid  h-full p-10 portrait:grid-rows-[2fr_3fr] landscape:grid-cols-[2fr_3fr]"
-      onClick={handleclick}
-    >
-      <div className="grid place-items-center">
-        <div className="text-center">
-          <div className="text-9xl">{currentAlphabet}</div>
-          <div className="text-5xl mt-4">{word}</div>
-        </div>
-      </div>
-      <div className="grid place-items-center">
-        <div>
-          <img
-            src={imgUrl}
-            alt={word}
-            className="max-w-full h-auto rounded-3xl w-64 portrait:w-64 landscape:w-64 md:w-128 lg:w-256 h-auto"
-          />
-        </div>
-      </div>
-    </main>
-  );
+  // return (
+  //   <main
+  //     className="grid  h-full p-10 portrait:grid-rows-[2fr_3fr] landscape:grid-cols-[2fr_3fr]"
+  //     onClick={handleclick}
+  //   >
+  //     <div className="grid place-items-center">
+  //       <div className="text-center">
+  //         <div className="text-9xl">{currentAlphabet}</div>
+  //         <div className="text-5xl mt-4">{word}</div>
+  //       </div>
+  //     </div>
+  //     <div className="grid place-items-center">
+  //       <div>
+  //         <img
+  //           src={imgUrl}
+  //           alt={word}
+  //           className="max-w-full h-auto rounded-3xl w-64 portrait:w-64 landscape:w-64 md:w-128 lg:w-256 h-auto"
+  //         />
+  //       </div>
+  //     </div>
+  //   </main>
+  // );
+
+  return <AlphabetExplorer />;
 }
